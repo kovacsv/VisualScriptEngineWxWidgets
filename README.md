@@ -4,7 +4,7 @@
 
 VisualScriptEngine is a node based visual scripting engine designed for embedding.
 
-# Buildi
+# Build
 
 You can build with Visual Studio by following these steps.
 * Build [wxWidgets](https://www.wxwidgets.org):
