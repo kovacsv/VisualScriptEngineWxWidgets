@@ -17,7 +17,7 @@ platform:
   - x64
 
 before_build:
-  - set VSE_DEVKIT_DIR=C:\Dependencies\VisualScriptEngine\Build\DevKit
+  - set VSE_DEVKIT_DIR=C:\Dependencies\VisualScriptEngine-master\Build\DevKit
   - set WXWIDGETS_DIR=C:\Dependencies\wxWidgets-3.1.2
   - python installdepswin.py C:\Dependencies msbuild %configuration%
   - mkdir Build
