@@ -203,11 +203,11 @@ class MyNodeEditorUIEnvironment : public WXAS::NodeEditorUIEnvironment
 public:
 	MyNodeEditorUIEnvironment (	WXAS::NodeEditorControl* nodeEditorControl,
 								DrawingControl* drawingControl,
-								NE::StringSettingsPtr& stringSettings,
+								NE::StringConverterPtr& stringConverter,
 								NUIE::SkinParamsPtr& skinParams,
 								NUIE::EventHandlersPtr& eventHandlers,
 								NE::EvaluationEnv& evaluationEnv) :
-		WXAS::NodeEditorUIEnvironment (nodeEditorControl, stringSettings, skinParams, eventHandlers, evaluationEnv),
+		WXAS::NodeEditorUIEnvironment (nodeEditorControl, stringConverter, skinParams, eventHandlers, evaluationEnv),
 		drawingControl (drawingControl)
 	{
 	}
@@ -340,14 +340,14 @@ public:
 		nodeEditorControl (new MyNodeEditorControl (mainWindow)),
 		applicationState ()
 	{
-		NE::StringSettingsPtr stringSettings (new NE::BasicStringSettings (NE::GetDefaultStringSettings ()));
+		NE::StringConverterPtr stringConverter (new NE::BasicStringConverter (NE::GetDefaultStringSettings ()));
 		NUIE::SkinParamsPtr skinParams (new NUIE::BasicSkinParams (NUIE::GetDefaultSkinParams ()));
 		NUIE::EventHandlersPtr eventHandlers (new MyNodeEditorEventHandlers (nodeEditorControl));
 		std::shared_ptr<WXAS::NodeEditorUIEnvironment> uiEnvironment = std::shared_ptr<WXAS::NodeEditorUIEnvironment> (
 			new MyNodeEditorUIEnvironment (
 				nodeEditorControl,
 				drawingControl,
-				stringSettings,
+				stringConverter,
 				skinParams,
 				eventHandlers,
 				evaluationEnv

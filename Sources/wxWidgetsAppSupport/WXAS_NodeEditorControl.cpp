@@ -53,13 +53,13 @@ bool NodeEditorEventHandlers::OnParameterSettings (NUIE::ParameterInterfacePtr p
 }
 
 NodeEditorUIEnvironment::NodeEditorUIEnvironment (	NodeEditorControl* nodeEditorControl,
-													NE::StringSettingsPtr& stringSettings,
+													NE::StringConverterPtr& stringConverter,
 													NUIE::SkinParamsPtr& skinParams,
 													NUIE::EventHandlersPtr& eventHandlers,
 													NE::EvaluationEnv& evaluationEnv) :
 	nodeEditorControl (nodeEditorControl),
 	evaluationEnv (evaluationEnv),
-	stringSettings (stringSettings),
+	stringConverter (stringConverter),
 	skinParams (skinParams),
 	eventHandlers (eventHandlers),
 	drawingContext (CreateNativeDrawingContext ())
@@ -82,9 +82,9 @@ void NodeEditorUIEnvironment::OnResize (int width, int height)
 	drawingContext->Resize (width, height);
 }
 
-const NE::StringSettings& NodeEditorUIEnvironment::GetStringSettings ()
+const NE::StringConverter& NodeEditorUIEnvironment::GetStringConverter ()
 {
-	return *stringSettings;
+	return *stringConverter;
 }
 
 const NUIE::SkinParams& NodeEditorUIEnvironment::GetSkinParams ()

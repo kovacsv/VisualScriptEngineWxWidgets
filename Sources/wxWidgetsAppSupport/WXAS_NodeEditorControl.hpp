@@ -34,7 +34,7 @@ class NodeEditorUIEnvironment : public NUIE::NodeUIEnvironment
 {
 public:
 	NodeEditorUIEnvironment	(	NodeEditorControl* nodeEditorControl,
-								NE::StringSettingsPtr& stringSettings,
+								NE::StringConverterPtr& stringConverter,
 								NUIE::SkinParamsPtr& skinParams,
 								NUIE::EventHandlersPtr& eventHandlers,
 								NE::EvaluationEnv& evaluationEnv);
@@ -43,7 +43,7 @@ public:
 	void								OnPaint (wxPanel* panel, wxPaintEvent& evt);
 	void								OnResize (int width, int height);
 
-	virtual const NE::StringSettings&	GetStringSettings () override;
+	virtual const NE::StringConverter&	GetStringConverter () override;
 	virtual const NUIE::SkinParams&		GetSkinParams () override;
 	virtual NUIE::DrawingContext&		GetDrawingContext () override;
 	virtual double						GetWindowScale () override;
@@ -59,7 +59,7 @@ private:
 	NodeEditorControl*								nodeEditorControl;
 	NE::EvaluationEnv&								evaluationEnv;
 
-	NE::StringSettingsPtr							stringSettings;
+	NE::StringConverterPtr							stringConverter;
 	NUIE::SkinParamsPtr								skinParams;
 	NUIE::EventHandlersPtr							eventHandlers;
 	std::shared_ptr<NUIE::NativeDrawingContext>		drawingContext;
