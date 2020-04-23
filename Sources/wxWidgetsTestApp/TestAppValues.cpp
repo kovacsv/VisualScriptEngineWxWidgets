@@ -84,7 +84,7 @@ std::wstring Transformation::ToString (const NE::StringConverter& stringConverte
 	std::wstring result = L"";
 	result += L"Matrix (";
 	for (int i = 0; i < 9; i++) {
-		result += stringConverter.NumberToString (matrix[i]);
+		result += stringConverter.NumberToString (matrix[i], NE::StringConverter::Measure::Number);
 		if (i < 9 - 1) {
 			result += L", ";
 		}
@@ -134,9 +134,9 @@ std::wstring Point::ToString (const NE::StringConverter& stringConverter) const
 {
 	std::wstring result = L"";
 	result += L"Point (";
-	result += stringConverter.NumberToString (x);
+	result += stringConverter.NumberToString (x, NE::StringConverter::Measure::Number);
 	result += L", ";
-	result += stringConverter.NumberToString (y);
+	result += stringConverter.NumberToString (y, NE::StringConverter::Measure::Number);
 	result += L")";
 	return result;
 }
@@ -228,7 +228,7 @@ std::wstring Circle::ToString (const NE::StringConverter& stringConverter) const
 	result += L"Circle (";
 	result += center.ToString (stringConverter);
 	result += L", ";
-	result += stringConverter.NumberToString (radius);
+	result += stringConverter.NumberToString (radius, NE::StringConverter::Measure::Number);
 	result += L")";
 	return result;
 }
