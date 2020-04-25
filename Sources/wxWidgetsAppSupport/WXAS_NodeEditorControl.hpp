@@ -53,7 +53,6 @@ public:
 	virtual void						OnValuesRecalculated () override;
 	virtual void						OnRedrawRequested () override;
 	virtual NUIE::EventHandlers&		GetEventHandlers () override;
-	virtual double						GetMouseMoveMinOffset () override;
 
 private:
 	NodeEditorControl*								nodeEditorControl;
