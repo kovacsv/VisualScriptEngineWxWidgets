@@ -43,6 +43,11 @@ NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (NUIE::NodeUIManager
 	return SelectCommandFromContextMenu (panel, position, commands);
 }
 
+void NodeEditorEventHandlers::OnDoubleClick (NUIE::NodeUIManager&, NUIE::NodeUIEnvironment&, const NUIE::Point&)
+{
+
+}
+
 bool NodeEditorEventHandlers::OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface)
 {
 	ParameterDialog paramDialog (panel, paramInterface);
