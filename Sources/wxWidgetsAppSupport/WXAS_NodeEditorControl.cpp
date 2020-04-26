@@ -7,8 +7,8 @@
 namespace WXAS
 {
 
-NodeEditorEventHandlers::NodeEditorEventHandlers (wxPanel* panel) :
-	panel (panel)
+NodeEditorEventHandlers::NodeEditorEventHandlers (NodeEditorControl* control) :
+	control (control)
 {
 
 }
@@ -18,39 +18,39 @@ NodeEditorEventHandlers::~NodeEditorEventHandlers ()
 
 }
 
-NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (NUIE::NodeUIManager&, NUIE::NodeUIEnvironment&, const NUIE::Point& position, const NUIE::MenuCommandStructure& commands)
+NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (const NUIE::Point& position, const NUIE::MenuCommandStructure& commands)
 {
-	return SelectCommandFromContextMenu (panel, position, commands);
+	return SelectCommandFromContextMenu (control, position, commands);
 }
 
-NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (NUIE::NodeUIManager&, NUIE::NodeUIEnvironment&, const NUIE::Point& position, const NUIE::UINodePtr&, const NUIE::MenuCommandStructure& commands)
+NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (const NUIE::Point& position, const NUIE::UINodePtr&, const NUIE::MenuCommandStructure& commands)
 {
-	return SelectCommandFromContextMenu (panel, position, commands);
+	return SelectCommandFromContextMenu (control, position, commands);
 }
 
-NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (NUIE::NodeUIManager&, NUIE::NodeUIEnvironment&, const NUIE::Point& position, const NUIE::UIOutputSlotConstPtr&, const NUIE::MenuCommandStructure& commands)
+NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (const NUIE::Point& position, const NUIE::UIOutputSlotConstPtr&, const NUIE::MenuCommandStructure& commands)
 {
-	return SelectCommandFromContextMenu (panel, position, commands);
+	return SelectCommandFromContextMenu (control, position, commands);
 }
 
-NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (NUIE::NodeUIManager&, NUIE::NodeUIEnvironment&, const NUIE::Point& position, const NUIE::UIInputSlotConstPtr&, const NUIE::MenuCommandStructure& commands)
+NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (const NUIE::Point& position, const NUIE::UIInputSlotConstPtr&, const NUIE::MenuCommandStructure& commands)
 {
-	return SelectCommandFromContextMenu (panel, position, commands);
+	return SelectCommandFromContextMenu (control, position, commands);
 }
 
-NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (NUIE::NodeUIManager&, NUIE::NodeUIEnvironment&, const NUIE::Point& position, const NUIE::UINodeGroupPtr&, const NUIE::MenuCommandStructure& commands)
+NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (const NUIE::Point& position, const NUIE::UINodeGroupPtr&, const NUIE::MenuCommandStructure& commands)
 {
-	return SelectCommandFromContextMenu (panel, position, commands);
+	return SelectCommandFromContextMenu (control, position, commands);
 }
 
-void NodeEditorEventHandlers::OnDoubleClick (NUIE::NodeUIManager&, NUIE::NodeUIEnvironment&, const NUIE::Point&)
+void NodeEditorEventHandlers::OnDoubleClick (const NUIE::Point&)
 {
 
 }
 
 bool NodeEditorEventHandlers::OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface)
 {
-	ParameterDialog paramDialog (panel, paramInterface);
+	ParameterDialog paramDialog (control, paramInterface);
 	if (paramDialog.ShowModal () == wxID_OK) {
 		return true;
 	}

@@ -2,7 +2,6 @@
 #define WXAS_NODEEDITORCONTROL_HPP
 
 #include "NUIE_NodeEditor.hpp"
-#include "BI_BuiltInCommands.hpp"
 #include "WXAS_ControlUtilities.hpp"
 
 #include <wx/wx.h>
@@ -16,19 +15,19 @@ class NodeEditorControl;
 class NodeEditorEventHandlers : public NUIE::EventHandlers
 {
 public:
-	NodeEditorEventHandlers (wxPanel* panel);
+	NodeEditorEventHandlers (NodeEditorControl* control);
 	virtual ~NodeEditorEventHandlers ();
 
-	virtual NUIE::MenuCommandPtr OnContextMenu (NUIE::NodeUIManager& uiManager, NUIE::NodeUIEnvironment& uiEnvironment, const NUIE::Point& position, const NUIE::MenuCommandStructure& commands) override;
-	virtual NUIE::MenuCommandPtr OnContextMenu (NUIE::NodeUIManager& uiManager, NUIE::NodeUIEnvironment& env, const NUIE::Point& position, const NUIE::UINodePtr& uiNode, const NUIE::MenuCommandStructure& commands) override;
-	virtual NUIE::MenuCommandPtr OnContextMenu (NUIE::NodeUIManager& uiManager, NUIE::NodeUIEnvironment& env, const NUIE::Point& position, const NUIE::UIOutputSlotConstPtr& outputSlot, const NUIE::MenuCommandStructure& commands) override;
-	virtual NUIE::MenuCommandPtr OnContextMenu (NUIE::NodeUIManager& uiManager, NUIE::NodeUIEnvironment& env, const NUIE::Point& position, const NUIE::UIInputSlotConstPtr& inputSlot, const NUIE::MenuCommandStructure& commands) override;
-	virtual NUIE::MenuCommandPtr OnContextMenu (NUIE::NodeUIManager& uiManager, NUIE::NodeUIEnvironment& env, const NUIE::Point& position, const NUIE::UINodeGroupPtr& group, const NUIE::MenuCommandStructure& commands) override;
-	virtual void OnDoubleClick (NUIE::NodeUIManager& uiManager, NUIE::NodeUIEnvironment& env, const NUIE::Point& position) override;
+	virtual NUIE::MenuCommandPtr OnContextMenu (const NUIE::Point& position, const NUIE::MenuCommandStructure& commands) override;
+	virtual NUIE::MenuCommandPtr OnContextMenu (const NUIE::Point& position, const NUIE::UINodePtr& uiNode, const NUIE::MenuCommandStructure& commands) override;
+	virtual NUIE::MenuCommandPtr OnContextMenu (const NUIE::Point& position, const NUIE::UIOutputSlotConstPtr& outputSlot, const NUIE::MenuCommandStructure& commands) override;
+	virtual NUIE::MenuCommandPtr OnContextMenu (const NUIE::Point& position, const NUIE::UIInputSlotConstPtr& inputSlot, const NUIE::MenuCommandStructure& commands) override;
+	virtual NUIE::MenuCommandPtr OnContextMenu (const NUIE::Point& position, const NUIE::UINodeGroupPtr& group, const NUIE::MenuCommandStructure& commands) override;
+	virtual void OnDoubleClick (const NUIE::Point& position) override;
 	virtual bool OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface);
 
 protected:
-	wxPanel* panel;
+	NodeEditorControl* control;
 };
 
 class NodeEditorUIEnvironment : public NUIE::NodeUIEnvironment
