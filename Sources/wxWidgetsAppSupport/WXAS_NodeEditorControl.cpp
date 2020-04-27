@@ -48,7 +48,16 @@ void NodeEditorEventHandlers::OnDoubleClick (const NUIE::Point&)
 
 }
 
-bool NodeEditorEventHandlers::OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface)
+bool NodeEditorEventHandlers::OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface, const NUIE::UINodePtr&)
+{
+	ParameterDialog paramDialog (control, paramInterface);
+	if (paramDialog.ShowModal () == wxID_OK) {
+		return true;
+	}
+	return false;
+}
+
+bool NodeEditorEventHandlers::OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface, const NUIE::UINodeGroupPtr&)
 {
 	ParameterDialog paramDialog (control, paramInterface);
 	if (paramDialog.ShowModal () == wxID_OK) {
