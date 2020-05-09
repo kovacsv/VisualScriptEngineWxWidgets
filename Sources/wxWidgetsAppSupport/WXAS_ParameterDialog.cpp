@@ -21,11 +21,11 @@ static size_t ControlIdToParamId (wxWindowID controlId)
 }
 
 ParameterDialog::ParameterDialog (wxWindow* parent, NUIE::ParameterInterfacePtr& paramInterface) :
-	wxDialog (parent, wxID_ANY, NE::Localize (L"Set Parameters"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE),
+	wxDialog (parent, wxID_ANY, NE::LocalizeString (L"Set Parameters"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE),
 	paramInterface (paramInterface),
 	gridSizer (new wxGridSizer (2, 5, 5)),
 	boxSizer (new wxBoxSizer (wxVERTICAL)),
-	okButton (new wxButton (this, wxID_OK, NE::Localize (L"OK")))
+	okButton (new wxButton (this, wxID_OK, NE::LocalizeString (L"OK")))
 {
 	gridSizer->SetRows (paramInterface->GetParameterCount ());
 	for (size_t paramIndex = 0; paramIndex < paramInterface->GetParameterCount (); ++paramIndex) {
@@ -37,8 +37,8 @@ ParameterDialog::ParameterDialog (wxWindow* parent, NUIE::ParameterInterfacePtr&
 		if (type == NUIE::ParameterType::Boolean) {
 			if (DBGVERIFY (NE::Value::IsType<NE::BooleanValue> (value))) {
 				wxChoice* choiceControl = new wxChoice (this, controlId);
-				choiceControl->Append (wxString (NE::Localize (L"true")));
-				choiceControl->Append (wxString (NE::Localize (L"false")));
+				choiceControl->Append (wxString (NE::LocalizeString (L"true")));
+				choiceControl->Append (wxString (NE::LocalizeString (L"false")));
 				choiceControl->Select (NE::BooleanValue::Get (value) ? 0 : 1);
 				control = choiceControl;
 			}
