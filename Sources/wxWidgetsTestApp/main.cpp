@@ -89,39 +89,39 @@ public:
 	{
 		switch (nodeType) {
 			case NodeType::Boolean:
-				return NUIE::UINodePtr (new BI::BooleanNode (L"Boolean", modelPosition, true));
+				return NUIE::UINodePtr (new BI::BooleanNode (NE::String (L"Boolean"), modelPosition, true));
 			case NodeType::Integer:
-				return NUIE::UINodePtr (new BI::IntegerUpDownNode (L"Integer", modelPosition, 0, 5));
+				return NUIE::UINodePtr (new BI::IntegerUpDownNode (NE::String (L"Integer"), modelPosition, 0, 5));
 			case NodeType::Number:
-				return NUIE::UINodePtr (new BI::DoubleUpDownNode (L"Number", modelPosition, 0.0, 5.0));
+				return NUIE::UINodePtr (new BI::DoubleUpDownNode (NE::String (L"Number"), modelPosition, 0.0, 5.0));
 			case NodeType::IntegerIncrement:
-				return NUIE::UINodePtr (new BI::IntegerIncrementedNode (L"Integer Increment", modelPosition));
+				return NUIE::UINodePtr (new BI::IntegerIncrementedNode (NE::String (L"Integer Increment"), modelPosition));
 			case NodeType::NumberIncrement:
-				return NUIE::UINodePtr (new BI::DoubleIncrementedNode (L"Number Increment", modelPosition));
+				return NUIE::UINodePtr (new BI::DoubleIncrementedNode (NE::String (L"Number Increment"), modelPosition));
 			case NodeType::NumberDistribution:
-				return NUIE::UINodePtr (new BI::DoubleDistributedNode (L"Number Distribution", modelPosition));
+				return NUIE::UINodePtr (new BI::DoubleDistributedNode (NE::String (L"Number Distribution"), modelPosition));
 			case NodeType::ListBuilder:
-				return NUIE::UINodePtr (new BI::ListBuilderNode (L"List Builder", modelPosition));
+				return NUIE::UINodePtr (new BI::ListBuilderNode (NE::String (L"List Builder"), modelPosition));
 			case NodeType::Addition:
-				return NUIE::UINodePtr (new BI::AdditionNode (L"Addition", modelPosition));
+				return NUIE::UINodePtr (new BI::AdditionNode (NE::String (L"Addition"), modelPosition));
 			case NodeType::Subtraction:
-				return NUIE::UINodePtr (new BI::SubtractionNode (L"Subtraction", modelPosition));
+				return NUIE::UINodePtr (new BI::SubtractionNode (NE::String (L"Subtraction"), modelPosition));
 			case NodeType::Multiplication:
-				return NUIE::UINodePtr (new BI::MultiplicationNode (L"Multiplication", modelPosition));
+				return NUIE::UINodePtr (new BI::MultiplicationNode (NE::String (L"Multiplication"), modelPosition));
 			case NodeType::Division:
-				return NUIE::UINodePtr (new BI::DivisionNode (L"Division", modelPosition));
+				return NUIE::UINodePtr (new BI::DivisionNode (NE::String (L"Division"), modelPosition));
 			case NodeType::Color:
-				return NUIE::UINodePtr (new ColorNode (L"Color", modelPosition));
+				return NUIE::UINodePtr (new ColorNode (NE::String (L"Color"), modelPosition));
 			case NodeType::Point:
-				return NUIE::UINodePtr (new PointNode (L"Point", modelPosition));
+				return NUIE::UINodePtr (new PointNode (NE::String (L"Point"), modelPosition));
 			case NodeType::Line:
-				return NUIE::UINodePtr (new LineNode (L"Line", modelPosition));
+				return NUIE::UINodePtr (new LineNode (NE::String (L"Line"), modelPosition));
 			case NodeType::Circle:
-				return NUIE::UINodePtr (new CircleNode (L"Circle", modelPosition));
+				return NUIE::UINodePtr (new CircleNode (NE::String (L"Circle"), modelPosition));
 			case NodeType::Offset:
-				return NUIE::UINodePtr (new OffsetNode (L"Offset", modelPosition));
+				return NUIE::UINodePtr (new OffsetNode (NE::String (L"Offset"), modelPosition));
 			case NodeType::Viewer:
-				return NUIE::UINodePtr (new BI::MultiLineViewerNode (L"Viewer", modelPosition, 5));
+				return NUIE::UINodePtr (new BI::MultiLineViewerNode (NE::String (L"Viewer"), modelPosition, 5));
 		}
 		return nullptr;
 	}
@@ -246,17 +246,17 @@ public:
 			static int count = 10;
 			for (int i = 0; i < count; i++) {
 				for (int j = 0; j < count; j++) {
-					nodeEditor->AddNode (NUIE::UINodePtr (new BI::DoubleIncrementedNode (L"Range", NUIE::Point (i * 150, j * 150))));
+					nodeEditor->AddNode (NUIE::UINodePtr (new BI::DoubleIncrementedNode (NE::String (L"Range"), NUIE::Point (i * 150, j * 150))));
 				}
 			}
 			nodeEditor->Update ();
 		} else {
-			NUIE::UINodePtr startInputNode (new BI::DoubleUpDownNode (L"Number", NUIE::Point (70, 70), 20, 5));
-			NUIE::UINodePtr stepInputNode (new BI::DoubleUpDownNode (L"Number", NUIE::Point (70, 180), 20, 5));
-			NUIE::UINodePtr intRangeNodeX (new BI::DoubleIncrementedNode (L"Increment", NUIE::Point (220, 100)));
-			NUIE::UINodePtr inputNodeY (new BI::DoubleUpDownNode (L"Number", NUIE::Point (220, 220), 20, 5));
-			std::shared_ptr<PointNode> pointNode (new PointNode (L"Point", NUIE::Point (400, 150)));
-			NUIE::UINodePtr viewerNode (new BI::MultiLineViewerNode (L"Viewer", NUIE::Point (600, 150), 5));
+			NUIE::UINodePtr startInputNode (new BI::DoubleUpDownNode (NE::String (L"Number"), NUIE::Point (70, 70), 20, 5));
+			NUIE::UINodePtr stepInputNode (new BI::DoubleUpDownNode (NE::String (L"Number"), NUIE::Point (70, 180), 20, 5));
+			NUIE::UINodePtr intRangeNodeX (new BI::DoubleIncrementedNode (NE::String (L"Increment"), NUIE::Point (220, 100)));
+			NUIE::UINodePtr inputNodeY (new BI::DoubleUpDownNode (NE::String (L"Number"), NUIE::Point (220, 220), 20, 5));
+			std::shared_ptr<PointNode> pointNode (new PointNode (NE::String (L"Point"), NUIE::Point (400, 150)));
+			NUIE::UINodePtr viewerNode (new BI::MultiLineViewerNode (NE::String (L"Viewer"), NUIE::Point (600, 150), 5));
 
 			nodeEditor->AddNode (startInputNode);
 			nodeEditor->AddNode (stepInputNode);

@@ -13,7 +13,7 @@ class ColorNode : public BI::BasicUINode
 
 public:
 	ColorNode ();
-	ColorNode (const std::wstring& name, const NUIE::Point& position);
+	ColorNode (const NE::String& name, const NUIE::Point& position);
 
 	virtual void				Initialize () override;
 	virtual NE::ValueConstPtr	Calculate (NE::EvaluationEnv& env) const override;
@@ -29,7 +29,7 @@ class DrawableNode : public BI::BasicUINode
 
 public:
 	DrawableNode ();
-	DrawableNode (const std::wstring& name, const NUIE::Point& position);
+	DrawableNode (const NE::String& name, const NUIE::Point& position);
 
 	virtual void				Initialize () override;
 	virtual void				RegisterParameters (NUIE::NodeParameterList& parameterList) const override;
@@ -59,7 +59,7 @@ class PointNode : public DrawableNode
 
 public:
 	PointNode ();
-	PointNode (const std::wstring& name, const NUIE::Point& position);
+	PointNode (const NE::String& name, const NUIE::Point& position);
 
 	virtual void				Initialize () override;
 	virtual NE::ValueConstPtr	Calculate (NE::EvaluationEnv& env) const override;
@@ -75,7 +75,7 @@ class LineNode : public DrawableNode
 
 public:
 	LineNode ();
-	LineNode (const std::wstring& name, const NUIE::Point& position);
+	LineNode (const NE::String& name, const NUIE::Point& position);
 
 	virtual void				Initialize () override;
 	virtual NE::ValueConstPtr	Calculate (NE::EvaluationEnv& env) const override;
@@ -90,7 +90,7 @@ class CircleNode : public DrawableNode
 
 public:
 	CircleNode ();
-	CircleNode (const std::wstring& name, const NUIE::Point& position);
+	CircleNode (const NE::String& name, const NUIE::Point& position);
 
 	virtual void				Initialize () override;
 	virtual NE::ValueConstPtr	Calculate (NE::EvaluationEnv& env) const override;
@@ -106,7 +106,7 @@ class OffsetNode : public DrawableNode
 
 public:
 	OffsetNode ();
-	OffsetNode (const std::wstring& name, const NUIE::Point& position);
+	OffsetNode (const NE::String& name, const NUIE::Point& position);
 
 	virtual void				Initialize () override;
 	virtual NE::ValueConstPtr	Calculate (NE::EvaluationEnv& env) const override;
