@@ -30,7 +30,7 @@ void ColorNode::Initialize ()
 	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("g"), NE::String (L"Green"), NE::ValuePtr (new NE::IntValue (0)), NE::OutputSlotConnectionMode::Single)));
 	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("b"), NE::String (L"Blue"), NE::ValuePtr (new NE::IntValue (0)), NE::OutputSlotConnectionMode::Single)));
 	RegisterUIOutputSlot (NUIE::UIOutputSlotPtr (new NUIE::UIOutputSlot (NE::SlotId ("color"), NE::String (L"Color"))));
-	RegisterFeature (NUIE::NodeFeaturePtr (new BI::ValueCombinationFeature (NE::ValueCombinationMode::Longest)));
+	RegisterFeature (BI::NodeFeaturePtr (new BI::ValueCombinationFeature (NE::ValueCombinationMode::Longest)));
 }
 
 NE::ValueConstPtr ColorNode::Calculate (NE::EvaluationEnv& env) const
@@ -135,8 +135,8 @@ DrawableNode::DrawableNode (const NE::String& name, const NUIE::Point& position)
 
 void DrawableNode::Initialize ()
 {
-	RegisterFeature (NUIE::NodeFeaturePtr (new BI::EnableDisableFeature (BI::EnableDisableFeature::State::Enabled, BI::EnableDisableFeature::Mode::DoNotInvalidate)));
-	RegisterFeature (NUIE::NodeFeaturePtr (new BI::ValueCombinationFeature (NE::ValueCombinationMode::Longest)));
+	RegisterFeature (BI::NodeFeaturePtr (new BI::EnableDisableFeature (BI::EnableDisableFeature::State::Enabled, BI::EnableDisableFeature::Mode::DoNotInvalidate)));
+	RegisterFeature (BI::NodeFeaturePtr (new BI::ValueCombinationFeature (NE::ValueCombinationMode::Longest)));
 }
 
 void DrawableNode::RegisterParameters (NUIE::NodeParameterList& parameterList) const
@@ -169,7 +169,7 @@ void DrawableNode::OnDisabled (NE::EvaluationEnv& env) const
 	RemoveItem (env);
 }
 
-void DrawableNode::OnFeatureChange (const NUIE::FeatureId& featureId, NE::EvaluationEnv& env) const
+void DrawableNode::OnFeatureChange (const BI::FeatureId& featureId, NE::EvaluationEnv& env) const
 {
 	if (featureId == BI::EnableDisableFeatureId) {
 		std::shared_ptr<BI::EnableDisableFeature> enableDisable = GetEnableDisableFeature (this);
