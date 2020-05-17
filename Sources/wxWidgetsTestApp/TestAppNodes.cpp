@@ -43,7 +43,7 @@ NE::ValueConstPtr ColorNode::Calculate (NE::EvaluationEnv& env) const
 	}
 
 	NE::ListValuePtr result (new NE::ListValue ());
-	BI::CombineValues (this, { r, g, b }, [&] (const NE::ValueCombination& combination) {
+	BI::ValueCombinationFeature::CombineValues (this, { r, g, b }, [&] (const NE::ValueCombination& combination) {
 		unsigned char rColor = (unsigned char) NE::NumberValue::ToInteger (combination.GetValue (0));
 		unsigned char gColor = (unsigned char) NE::NumberValue::ToInteger (combination.GetValue (1));
 		unsigned char bColor = (unsigned char) NE::NumberValue::ToInteger (combination.GetValue (2));
@@ -277,7 +277,7 @@ NE::ValueConstPtr PointNode::Calculate (NE::EvaluationEnv& env) const
 	}
 
 	NE::ListValuePtr result (new NE::ListValue ());
-	BI::CombineValues (this, {x, y}, [&] (const NE::ValueCombination& combination) {
+	BI::ValueCombinationFeature::CombineValues (this, {x, y}, [&] (const NE::ValueCombination& combination) {
 		result->Push (NE::ValuePtr (new PointValue (
 			Point (
 				NE::NumberValue::ToDouble (combination.GetValue (0)),
@@ -342,7 +342,7 @@ NE::ValueConstPtr LineNode::Calculate (NE::EvaluationEnv& env) const
 	}
 
 	NE::ListValuePtr result (new NE::ListValue ());
-	BI::CombineValues (this, {beg, end, color}, [&] (const NE::ValueCombination& combination) {
+	BI::ValueCombinationFeature::CombineValues (this, {beg, end, color}, [&] (const NE::ValueCombination& combination) {
 		result->Push (NE::ValuePtr (new LineValue (
 			Line (
 				PointValue::Get (combination.GetValue (0)),
@@ -401,7 +401,7 @@ NE::ValueConstPtr CircleNode::Calculate (NE::EvaluationEnv& env) const
 	}
 
 	NE::ListValuePtr result (new NE::ListValue ());
-	BI::CombineValues (this, {beg, end, color}, [&] (const NE::ValueCombination& combination) {
+	BI::ValueCombinationFeature::CombineValues (this, {beg, end, color}, [&] (const NE::ValueCombination& combination) {
 		result->Push (NE::ValuePtr (new CircleValue (
 			Circle (
 				PointValue::Get (combination.GetValue (0)),
@@ -481,7 +481,7 @@ NE::ValueConstPtr OffsetNode::Calculate (NE::EvaluationEnv& env) const
 	}
 
 	NE::ListValuePtr result (new NE::ListValue ());
-	BI::CombineValues (this, { geometry, x, y }, [&] (const NE::ValueCombination& combination) {
+	BI::ValueCombinationFeature::CombineValues (this, { geometry, x, y }, [&] (const NE::ValueCombination& combination) {
 		const GeometricValue* geomValue = NE::Value::Cast<GeometricValue> (combination.GetValue (0).get ());
 		Transformation transformation = Transformation::Translation (
 			NE::NumberValue::ToDouble (combination.GetValue (1)),
