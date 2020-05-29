@@ -12,11 +12,11 @@ namespace WXAS
 
 class NodeEditorControl;
 
-class NodeEditorEventHandlers : public NUIE::EventHandlers
+class NodeEditorEventHandler : public NUIE::EventHandler
 {
 public:
-	NodeEditorEventHandlers (NodeEditorControl* control);
-	virtual ~NodeEditorEventHandlers ();
+	NodeEditorEventHandler (NodeEditorControl* control);
+	virtual ~NodeEditorEventHandler ();
 
 	virtual NUIE::MenuCommandPtr OnContextMenu (const NUIE::Point& position, const NUIE::MenuCommandStructure& commands) override;
 	virtual NUIE::MenuCommandPtr OnContextMenu (const NUIE::Point& position, const NUIE::UINodePtr& uiNode, const NUIE::MenuCommandStructure& commands) override;
@@ -37,7 +37,7 @@ public:
 	NodeEditorUIEnvironment	(	NodeEditorControl* nodeEditorControl,
 								NE::StringConverterPtr& stringConverter,
 								NUIE::SkinParamsPtr& skinParams,
-								NUIE::EventHandlersPtr& eventHandlers,
+								NUIE::EventHandlerPtr& eventHandler,
 								NE::EvaluationEnv& evaluationEnv);
 	virtual ~NodeEditorUIEnvironment ();
 
@@ -53,7 +53,7 @@ public:
 	virtual void						OnEvaluationEnd () override;
 	virtual void						OnValuesRecalculated () override;
 	virtual void						OnRedrawRequested () override;
-	virtual NUIE::EventHandlers&		GetEventHandlers () override;
+	virtual NUIE::EventHandler&			GetEventHandler () override;
 
 private:
 	NodeEditorControl*								nodeEditorControl;
@@ -61,7 +61,7 @@ private:
 
 	NE::StringConverterPtr							stringConverter;
 	NUIE::SkinParamsPtr								skinParams;
-	NUIE::EventHandlersPtr							eventHandlers;
+	NUIE::EventHandlerPtr							eventHandler;
 	std::shared_ptr<NUIE::NativeDrawingContext>		drawingContext;
 };
 

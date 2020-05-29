@@ -132,11 +132,11 @@ private:
 	NUIE::Point					position;
 };
 
-class MyNodeEditorEventHandlers : public WXAS::NodeEditorEventHandlers
+class MyNodeEditorEventHandler : public WXAS::NodeEditorEventHandler
 {
 public:
-	MyNodeEditorEventHandlers (WXAS::NodeEditorControl* control) :
-		WXAS::NodeEditorEventHandlers (control)
+	MyNodeEditorEventHandler (WXAS::NodeEditorControl* control) :
+		WXAS::NodeEditorEventHandler (control)
 	{
 	
 	}
@@ -214,9 +214,9 @@ public:
 								DrawingControl* drawingControl,
 								NE::StringConverterPtr& stringConverter,
 								NUIE::SkinParamsPtr& skinParams,
-								NUIE::EventHandlersPtr& eventHandlers,
+								NUIE::EventHandlerPtr& eventHandler,
 								NE::EvaluationEnv& evaluationEnv) :
-		WXAS::NodeEditorUIEnvironment (nodeEditorControl, stringConverter, skinParams, eventHandlers, evaluationEnv),
+		WXAS::NodeEditorUIEnvironment (nodeEditorControl, stringConverter, skinParams, eventHandler, evaluationEnv),
 		drawingControl (drawingControl)
 	{
 	}
@@ -351,14 +351,14 @@ public:
 	{
 		NE::StringConverterPtr stringConverter (new NE::BasicStringConverter (NE::GetDefaultStringSettings ()));
 		NUIE::SkinParamsPtr skinParams (new NUIE::BasicSkinParams (NUIE::GetDefaultSkinParams ()));
-		NUIE::EventHandlersPtr eventHandlers (new MyNodeEditorEventHandlers (nodeEditorControl));
+		NUIE::EventHandlerPtr eventHandler (new MyNodeEditorEventHandler (nodeEditorControl));
 		std::shared_ptr<WXAS::NodeEditorUIEnvironment> uiEnvironment = std::shared_ptr<WXAS::NodeEditorUIEnvironment> (
 			new MyNodeEditorUIEnvironment (
 				nodeEditorControl,
 				drawingControl,
 				stringConverter,
 				skinParams,
-				eventHandlers,
+				eventHandler,
 				evaluationEnv
 			)
 		);

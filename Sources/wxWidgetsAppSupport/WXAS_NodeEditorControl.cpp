@@ -7,48 +7,48 @@
 namespace WXAS
 {
 
-NodeEditorEventHandlers::NodeEditorEventHandlers (NodeEditorControl* control) :
+NodeEditorEventHandler::NodeEditorEventHandler (NodeEditorControl* control) :
 	control (control)
 {
 
 }
 
-NodeEditorEventHandlers::~NodeEditorEventHandlers ()
+NodeEditorEventHandler::~NodeEditorEventHandler ()
 {
 
 }
 
-NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (const NUIE::Point& position, const NUIE::MenuCommandStructure& commands)
-{
-	return SelectCommandFromContextMenu (control, position, commands);
-}
-
-NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (const NUIE::Point& position, const NUIE::UINodePtr&, const NUIE::MenuCommandStructure& commands)
+NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (const NUIE::Point& position, const NUIE::MenuCommandStructure& commands)
 {
 	return SelectCommandFromContextMenu (control, position, commands);
 }
 
-NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (const NUIE::Point& position, const NUIE::UIOutputSlotConstPtr&, const NUIE::MenuCommandStructure& commands)
+NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (const NUIE::Point& position, const NUIE::UINodePtr&, const NUIE::MenuCommandStructure& commands)
 {
 	return SelectCommandFromContextMenu (control, position, commands);
 }
 
-NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (const NUIE::Point& position, const NUIE::UIInputSlotConstPtr&, const NUIE::MenuCommandStructure& commands)
+NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (const NUIE::Point& position, const NUIE::UIOutputSlotConstPtr&, const NUIE::MenuCommandStructure& commands)
 {
 	return SelectCommandFromContextMenu (control, position, commands);
 }
 
-NUIE::MenuCommandPtr NodeEditorEventHandlers::OnContextMenu (const NUIE::Point& position, const NUIE::UINodeGroupPtr&, const NUIE::MenuCommandStructure& commands)
+NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (const NUIE::Point& position, const NUIE::UIInputSlotConstPtr&, const NUIE::MenuCommandStructure& commands)
 {
 	return SelectCommandFromContextMenu (control, position, commands);
 }
 
-void NodeEditorEventHandlers::OnDoubleClick (const NUIE::Point&)
+NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (const NUIE::Point& position, const NUIE::UINodeGroupPtr&, const NUIE::MenuCommandStructure& commands)
+{
+	return SelectCommandFromContextMenu (control, position, commands);
+}
+
+void NodeEditorEventHandler::OnDoubleClick (const NUIE::Point&)
 {
 
 }
 
-bool NodeEditorEventHandlers::OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface, const NUIE::UINodePtr&)
+bool NodeEditorEventHandler::OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface, const NUIE::UINodePtr&)
 {
 	ParameterDialog paramDialog (control, paramInterface);
 	if (paramDialog.ShowModal () == wxID_OK) {
@@ -57,7 +57,7 @@ bool NodeEditorEventHandlers::OnParameterSettings (NUIE::ParameterInterfacePtr p
 	return false;
 }
 
-bool NodeEditorEventHandlers::OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface, const NUIE::UINodeGroupPtr&)
+bool NodeEditorEventHandler::OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface, const NUIE::UINodeGroupPtr&)
 {
 	ParameterDialog paramDialog (control, paramInterface);
 	if (paramDialog.ShowModal () == wxID_OK) {
@@ -69,13 +69,13 @@ bool NodeEditorEventHandlers::OnParameterSettings (NUIE::ParameterInterfacePtr p
 NodeEditorUIEnvironment::NodeEditorUIEnvironment (	NodeEditorControl* nodeEditorControl,
 													NE::StringConverterPtr& stringConverter,
 													NUIE::SkinParamsPtr& skinParams,
-													NUIE::EventHandlersPtr& eventHandlers,
+													NUIE::EventHandlerPtr& eventHandler,
 													NE::EvaluationEnv& evaluationEnv) :
 	nodeEditorControl (nodeEditorControl),
 	evaluationEnv (evaluationEnv),
 	stringConverter (stringConverter),
 	skinParams (skinParams),
-	eventHandlers (eventHandlers),
+	eventHandler (eventHandler),
 	drawingContext (CreateNativeDrawingContext ())
 {
 	drawingContext->Init (GetNativeHandle (nodeEditorControl));
@@ -141,9 +141,9 @@ void NodeEditorUIEnvironment::OnRedrawRequested ()
 	nodeEditorControl->Refresh (false);
 }
 
-NUIE::EventHandlers& NodeEditorUIEnvironment::GetEventHandlers ()
+NUIE::EventHandler& NodeEditorUIEnvironment::GetEventHandler ()
 {
-	return *eventHandlers;
+	return *eventHandler;
 }
 
 NodeEditorControl::NodeEditorControl (wxWindow *parent) :
