@@ -54,6 +54,7 @@ public:
 	virtual void						OnValuesRecalculated () override;
 	virtual void						OnRedrawRequested () override;
 	virtual NUIE::EventHandler&			GetEventHandler () override;
+	virtual NUIE::ClipboardHandler&		GetClipboardHandler () override;
 
 private:
 	NodeEditorControl*								nodeEditorControl;
@@ -62,6 +63,7 @@ private:
 	NE::StringConverterPtr							stringConverter;
 	NUIE::SkinParamsPtr								skinParams;
 	NUIE::EventHandlerPtr							eventHandler;
+	NUIE::InMemoryClipboardHandler					clipboardHandler;
 	std::shared_ptr<NUIE::NativeDrawingContext>		drawingContext;
 };
 

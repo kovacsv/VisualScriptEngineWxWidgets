@@ -76,6 +76,7 @@ NodeEditorUIEnvironment::NodeEditorUIEnvironment (	NodeEditorControl* nodeEditor
 	stringConverter (stringConverter),
 	skinParams (skinParams),
 	eventHandler (eventHandler),
+	clipboardHandler (),
 	drawingContext (CreateNativeDrawingContext ())
 {
 	drawingContext->Init (GetNativeHandle (nodeEditorControl));
@@ -144,6 +145,11 @@ void NodeEditorUIEnvironment::OnRedrawRequested ()
 NUIE::EventHandler& NodeEditorUIEnvironment::GetEventHandler ()
 {
 	return *eventHandler;
+}
+
+NUIE::ClipboardHandler& NodeEditorUIEnvironment::GetClipboardHandler ()
+{
+	return clipboardHandler;
 }
 
 NodeEditorControl::NodeEditorControl (wxWindow *parent) :
