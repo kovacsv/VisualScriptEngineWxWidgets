@@ -63,7 +63,7 @@ private:
 	NE::StringConverterPtr							stringConverter;
 	NUIE::SkinParamsPtr								skinParams;
 	NUIE::EventHandlerPtr							eventHandler;
-	NUIE::InMemoryClipboardHandler					clipboardHandler;
+	NUIE::ClipboardHandlerPtr						clipboardHandler;
 	std::shared_ptr<NUIE::NativeDrawingContext>		drawingContext;
 };
 
