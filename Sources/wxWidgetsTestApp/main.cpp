@@ -183,30 +183,6 @@ public:
 	}
 };
 
-class MyHeaderIO : public NUIE::ExternalHeaderIO
-{
-public:
-	MyHeaderIO () :
-		headerInfo ("NodeEngineTestApp")
-	{
-	}
-
-	virtual bool Read (NE::InputStream& inputStream) const override
-	{
-		std::string currentHeaderInfo;
-		inputStream.Read (currentHeaderInfo);
-		return currentHeaderInfo == headerInfo;
-	}
-
-	virtual void Write (NE::OutputStream& outputStream) const override
-	{
-		outputStream.Write (headerInfo);
-	}
-
-private:
-	std::string headerInfo;
-};
-
 class MyNodeEditorUIEnvironment : public WXAS::NodeEditorUIEnvironment
 {
 public:
@@ -336,8 +312,6 @@ public:
 	}
 };
 
-static const MyHeaderIO headerIO;
-
 class MainFrame : public wxFrame
 {
 public:
@@ -398,7 +372,7 @@ public:
 						std::wstring fileName = fileDialog.GetPath ().ToStdWstring ();
 						drawingControl->ClearImage ();
 						// TODO: handle when open fails
-						if (nodeEditorControl->Open (fileName, &fileIO, &headerIO)) {
+						if (nodeEditorControl->Open (fileName, &fileIO)) {
 							applicationState.SetCurrentFileName (fileName);
 						} else {
 							Reset ();
@@ -410,10 +384,10 @@ public:
 				{
 					wxFileDialog fileDialog (this, L"Save", L"", L"", L"Node Engine Files (*.ne)|*.ne", wxFD_SAVE);
 					if (applicationState.HasCurrentFileName ()) {
-						nodeEditorControl->Save (applicationState.GetCurrentFileName (), &fileIO, &headerIO);
+						nodeEditorControl->Save (applicationState.GetCurrentFileName (), &fileIO);
 					} else if (fileDialog.ShowModal () == wxID_OK) {
 						std::wstring fileName = fileDialog.GetPath ().ToStdWstring ();
-						nodeEditorControl->Save (fileName, &fileIO, &headerIO);
+						nodeEditorControl->Save (fileName, &fileIO);
 						applicationState.SetCurrentFileName (fileName);
 					}
 				}
@@ -423,7 +397,7 @@ public:
 					wxFileDialog fileDialog (this, L"Save As", L"", L"", L"Node Engine Files (*.ne)|*.ne", wxFD_SAVE);
 					if (fileDialog.ShowModal () == wxID_OK) {
 						std::wstring fileName = fileDialog.GetPath ().ToStdWstring ();
-						nodeEditorControl->Save (fileName, &fileIO, &headerIO);
+						nodeEditorControl->Save (fileName, &fileIO);
 						applicationState.SetCurrentFileName (fileName);
 					}
 				}
