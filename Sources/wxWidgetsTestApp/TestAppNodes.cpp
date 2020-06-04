@@ -60,7 +60,7 @@ void ColorNode::RegisterParameters (NUIE::NodeParameterList& parameterList) cons
 	{
 	public:
 		RedParameter () :
-			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("r"), L"Red", NUIE::ParameterType::Integer)
+			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("r"), NE::LocString (L"Red"), NUIE::ParameterType::Integer)
 		{
 
 		}
@@ -75,7 +75,7 @@ void ColorNode::RegisterParameters (NUIE::NodeParameterList& parameterList) cons
 	{
 	public:
 		GreenParameter () :
-			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("g"), L"Green", NUIE::ParameterType::Integer)
+			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("g"), NE::LocString (L"Green"), NUIE::ParameterType::Integer)
 		{
 
 		}
@@ -90,7 +90,7 @@ void ColorNode::RegisterParameters (NUIE::NodeParameterList& parameterList) cons
 	{
 	public:
 		BlueParameter () :
-			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("b"), L"Blue", NUIE::ParameterType::Integer)
+			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("b"), NE::LocString (L"Blue"), NUIE::ParameterType::Integer)
 		{
 
 		}
@@ -293,8 +293,8 @@ NE::ValueConstPtr PointNode::Calculate (NE::EvaluationEnv& env) const
 void PointNode::RegisterParameters (NUIE::NodeParameterList& parameterList) const
 {
 	DrawableNode::RegisterParameters (parameterList);
-	NUIE::RegisterSlotDefaultValueNodeParameter<PointNode, NE::DoubleValue> (parameterList, NE::SlotId ("x"), L"Position X", NUIE::ParameterType::Double);
-	NUIE::RegisterSlotDefaultValueNodeParameter<PointNode, NE::DoubleValue> (parameterList, NE::SlotId ("y"), L"Position Y", NUIE::ParameterType::Double);
+	NUIE::RegisterSlotDefaultValueNodeParameter<PointNode, NE::DoubleValue> (parameterList, NE::SlotId ("x"), NE::LocString (L"Position X"), NUIE::ParameterType::Double);
+	NUIE::RegisterSlotDefaultValueNodeParameter<PointNode, NE::DoubleValue> (parameterList, NE::SlotId ("y"), NE::LocString (L"Position Y"), NUIE::ParameterType::Double);
 }
 
 NE::Stream::Status PointNode::Read (NE::InputStream& inputStream)
@@ -421,7 +421,7 @@ void CircleNode::RegisterParameters (NUIE::NodeParameterList& parameterList) con
 	{
 	public:
 		RadiusParameter () :
-			SlotDefaultValueNodeParameter<CircleNode, NE::DoubleValue> (NE::SlotId ("radius"), L"Radius", NUIE::ParameterType::Double)
+			SlotDefaultValueNodeParameter<CircleNode, NE::DoubleValue> (NE::SlotId ("radius"), NE::LocString (L"Radius"), NUIE::ParameterType::Double)
 		{
 
 		}
@@ -499,8 +499,8 @@ NE::ValueConstPtr OffsetNode::Calculate (NE::EvaluationEnv& env) const
 void OffsetNode::RegisterParameters (NUIE::NodeParameterList& parameterList) const
 {
 	BI::BasicUINode::RegisterParameters (parameterList);
-	NUIE::RegisterSlotDefaultValueNodeParameter<OffsetNode, NE::DoubleValue> (parameterList, NE::SlotId ("x"), L"X", NUIE::ParameterType::Double);
-	NUIE::RegisterSlotDefaultValueNodeParameter<OffsetNode, NE::DoubleValue> (parameterList, NE::SlotId ("y"), L"Y", NUIE::ParameterType::Double);
+	NUIE::RegisterSlotDefaultValueNodeParameter<OffsetNode, NE::DoubleValue> (parameterList, NE::SlotId ("x"), NE::LocString (L"X"), NUIE::ParameterType::Double);
+	NUIE::RegisterSlotDefaultValueNodeParameter<OffsetNode, NE::DoubleValue> (parameterList, NE::SlotId ("y"), NE::LocString (L"Y"), NUIE::ParameterType::Double);
 }
 
 NE::Stream::Status OffsetNode::Read (NE::InputStream& inputStream)
