@@ -6,20 +6,12 @@ set (VSE_VERSION_3 2)
 set (VSE_APP_NAME VisualScriptEngineWxWidgets)
 
 function (SetCompilerOptions module)
-	set (DebugOptions)
-	set (ReleaseOptions)
+	target_compile_options (${module} PUBLIC "$<$<CONFIG:Debug>:-DDEBUG>")
 	if (MSVC)
 		target_compile_options (${module} PUBLIC /W4 /WX)
-		set (DebugOptions -DDEBUG -D_DEBUG /Zi /FC)
-		set (ReleaseOptions /O2)
 	else ()
 		target_compile_options (${module} PUBLIC -std=c++11 -Wall -Wextra -Werror)
-		set (DebugOptions -DDEBUG -D_DEBUG -g -ggdb)
 	endif ()
-	target_compile_options (${module} PUBLIC
-		"$<$<CONFIG:Debug>:${DebugOptions}>"
-		"$<$<CONFIG:Release>:${ReleaseOptions}>"
-	)
 endfunction ()
 
 set_property (GLOBAL PROPERTY USE_FOLDERS ON)
