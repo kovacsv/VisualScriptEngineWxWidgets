@@ -13,12 +13,12 @@ DYNAMIC_SERIALIZATION_INFO (CircleNode, 1, "{651FEFFD-4F77-4E31-8765-CAF54249126
 DYNAMIC_SERIALIZATION_INFO (OffsetNode, 1, "{76B41F97-8819-4F7E-8377-BD0FC0491C1A}");
 
 ColorNode::ColorNode () :
-	ColorNode (NE::String (), NUIE::Point ())
+	ColorNode (NE::LocString (), NUIE::Point ())
 {
 
 }
 
-ColorNode::ColorNode (const NE::String& name, const NUIE::Point& position) :
+ColorNode::ColorNode (const NE::LocString& name, const NUIE::Point& position) :
 	BI::BasicUINode (name, position)
 {
 
@@ -26,10 +26,10 @@ ColorNode::ColorNode (const NE::String& name, const NUIE::Point& position) :
 
 void ColorNode::Initialize ()
 {
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("r"), NE::String (L"Red"), NE::ValuePtr (new NE::IntValue (0)), NE::OutputSlotConnectionMode::Single)));
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("g"), NE::String (L"Green"), NE::ValuePtr (new NE::IntValue (0)), NE::OutputSlotConnectionMode::Single)));
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("b"), NE::String (L"Blue"), NE::ValuePtr (new NE::IntValue (0)), NE::OutputSlotConnectionMode::Single)));
-	RegisterUIOutputSlot (NUIE::UIOutputSlotPtr (new NUIE::UIOutputSlot (NE::SlotId ("color"), NE::String (L"Color"))));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("r"), NE::LocString (L"Red"), NE::ValuePtr (new NE::IntValue (0)), NE::OutputSlotConnectionMode::Single)));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("g"), NE::LocString (L"Green"), NE::ValuePtr (new NE::IntValue (0)), NE::OutputSlotConnectionMode::Single)));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("b"), NE::LocString (L"Blue"), NE::ValuePtr (new NE::IntValue (0)), NE::OutputSlotConnectionMode::Single)));
+	RegisterUIOutputSlot (NUIE::UIOutputSlotPtr (new NUIE::UIOutputSlot (NE::SlotId ("color"), NE::LocString (L"Color"))));
 	RegisterFeature (BI::NodeFeaturePtr (new BI::ValueCombinationFeature (NE::ValueCombinationMode::Longest)));
 }
 
@@ -60,7 +60,7 @@ void ColorNode::RegisterParameters (NUIE::NodeParameterList& parameterList) cons
 	{
 	public:
 		RedParameter () :
-			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("r"), NE::String (L"Red"), NUIE::ParameterType::Integer)
+			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("r"), NE::LocString (L"Red"), NUIE::ParameterType::Integer)
 		{
 
 		}
@@ -75,7 +75,7 @@ void ColorNode::RegisterParameters (NUIE::NodeParameterList& parameterList) cons
 	{
 	public:
 		GreenParameter () :
-			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("g"), NE::String (L"Green"), NUIE::ParameterType::Integer)
+			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("g"), NE::LocString (L"Green"), NUIE::ParameterType::Integer)
 		{
 
 		}
@@ -90,7 +90,7 @@ void ColorNode::RegisterParameters (NUIE::NodeParameterList& parameterList) cons
 	{
 	public:
 		BlueParameter () :
-			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("b"), NE::String (L"Blue"), NUIE::ParameterType::Integer)
+			SlotDefaultValueNodeParameter<ColorNode, NE::IntValue> (NE::SlotId ("b"), NE::LocString (L"Blue"), NUIE::ParameterType::Integer)
 		{
 
 		}
@@ -122,12 +122,12 @@ NE::Stream::Status ColorNode::Write (NE::OutputStream& outputStream) const
 }
 
 DrawableNode::DrawableNode () :
-	DrawableNode (NE::String (), NUIE::Point ())
+	DrawableNode (NE::LocString (), NUIE::Point ())
 {
 
 }
 
-DrawableNode::DrawableNode (const NE::String& name, const NUIE::Point& position) :
+DrawableNode::DrawableNode (const NE::LocString& name, const NUIE::Point& position) :
 	BI::BasicUINode (name, position)
 {
 
@@ -249,12 +249,12 @@ void DrawableNode::DrawInplace (NUIE::NodeUIDrawingEnvironment& env) const
 }
 
 PointNode::PointNode () :
-	PointNode (NE::String (), NUIE::Point ())
+	PointNode (NE::LocString (), NUIE::Point ())
 {
 
 }
 
-PointNode::PointNode (const NE::String& name, const NUIE::Point& position) :
+PointNode::PointNode (const NE::LocString& name, const NUIE::Point& position) :
 	DrawableNode (name, position)
 {
 
@@ -263,9 +263,9 @@ PointNode::PointNode (const NE::String& name, const NUIE::Point& position) :
 void PointNode::Initialize ()
 {
 	DrawableNode::Initialize ();
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("x"), NE::String (L"X"), NE::ValuePtr (new NE::DoubleValue (0.0)), NE::OutputSlotConnectionMode::Single)));
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("y"), NE::String (L"Y"), NE::ValuePtr (new NE::DoubleValue (0.0)), NE::OutputSlotConnectionMode::Single)));
-	RegisterUIOutputSlot (NUIE::UIOutputSlotPtr (new NUIE::UIOutputSlot (NE::SlotId ("point"), NE::String (L"Point"))));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("x"), NE::LocString (L"X"), NE::ValuePtr (new NE::DoubleValue (0.0)), NE::OutputSlotConnectionMode::Single)));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("y"), NE::LocString (L"Y"), NE::ValuePtr (new NE::DoubleValue (0.0)), NE::OutputSlotConnectionMode::Single)));
+	RegisterUIOutputSlot (NUIE::UIOutputSlotPtr (new NUIE::UIOutputSlot (NE::SlotId ("point"), NE::LocString (L"Point"))));
 }
 
 NE::ValueConstPtr PointNode::Calculate (NE::EvaluationEnv& env) const
@@ -293,8 +293,8 @@ NE::ValueConstPtr PointNode::Calculate (NE::EvaluationEnv& env) const
 void PointNode::RegisterParameters (NUIE::NodeParameterList& parameterList) const
 {
 	DrawableNode::RegisterParameters (parameterList);
-	NUIE::RegisterSlotDefaultValueNodeParameter<PointNode, NE::DoubleValue> (parameterList, NE::SlotId ("x"), NE::String (L"Position X"), NUIE::ParameterType::Double);
-	NUIE::RegisterSlotDefaultValueNodeParameter<PointNode, NE::DoubleValue> (parameterList, NE::SlotId ("y"), NE::String (L"Position Y"), NUIE::ParameterType::Double);
+	NUIE::RegisterSlotDefaultValueNodeParameter<PointNode, NE::DoubleValue> (parameterList, NE::SlotId ("x"), NE::LocString (L"Position X"), NUIE::ParameterType::Double);
+	NUIE::RegisterSlotDefaultValueNodeParameter<PointNode, NE::DoubleValue> (parameterList, NE::SlotId ("y"), NE::LocString (L"Position Y"), NUIE::ParameterType::Double);
 }
 
 NE::Stream::Status PointNode::Read (NE::InputStream& inputStream)
@@ -312,12 +312,12 @@ NE::Stream::Status PointNode::Write (NE::OutputStream& outputStream) const
 }
 
 LineNode::LineNode () :
-	LineNode (NE::String (), NUIE::Point ())
+	LineNode (NE::LocString (), NUIE::Point ())
 {
 
 }
 
-LineNode::LineNode (const NE::String& name, const NUIE::Point& position) :
+LineNode::LineNode (const NE::LocString& name, const NUIE::Point& position) :
 	DrawableNode (name, position)
 {
 
@@ -326,10 +326,10 @@ LineNode::LineNode (const NE::String& name, const NUIE::Point& position) :
 void LineNode::Initialize ()
 {
 	DrawableNode::Initialize ();
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("beg"), NE::String (L"Beg"), nullptr, NE::OutputSlotConnectionMode::Single)));
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("end"), NE::String (L"End"), nullptr, NE::OutputSlotConnectionMode::Single)));
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("color"), NE::String (L"Color"), NE::ValuePtr (new ColorValue (Color (0, 0, 0))), NE::OutputSlotConnectionMode::Single)));
-	RegisterUIOutputSlot (NUIE::UIOutputSlotPtr (new NUIE::UIOutputSlot (NE::SlotId ("line"), NE::String (L"Line"))));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("beg"), NE::LocString (L"Beg"), nullptr, NE::OutputSlotConnectionMode::Single)));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("end"), NE::LocString (L"End"), nullptr, NE::OutputSlotConnectionMode::Single)));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("color"), NE::LocString (L"Color"), NE::ValuePtr (new ColorValue (Color (0, 0, 0))), NE::OutputSlotConnectionMode::Single)));
+	RegisterUIOutputSlot (NUIE::UIOutputSlotPtr (new NUIE::UIOutputSlot (NE::SlotId ("line"), NE::LocString (L"Line"))));
 }
 
 NE::ValueConstPtr LineNode::Calculate (NE::EvaluationEnv& env) const
@@ -371,12 +371,12 @@ NE::Stream::Status LineNode::Write (NE::OutputStream& outputStream) const
 }
 
 CircleNode::CircleNode () :
-	CircleNode (NE::String (), NUIE::Point ())
+	CircleNode (NE::LocString (), NUIE::Point ())
 {
 
 }
 
-CircleNode::CircleNode (const NE::String& name, const NUIE::Point& position) :
+CircleNode::CircleNode (const NE::LocString& name, const NUIE::Point& position) :
 	DrawableNode (name, position)
 {
 
@@ -385,10 +385,10 @@ CircleNode::CircleNode (const NE::String& name, const NUIE::Point& position) :
 void CircleNode::Initialize ()
 {
 	DrawableNode::Initialize ();
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("center"), NE::String (L"Center"), nullptr, NE::OutputSlotConnectionMode::Single)));
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("radius"), NE::String (L"Radius"), NE::ValuePtr (new NE::DoubleValue (10.0)), NE::OutputSlotConnectionMode::Single)));
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("color"), NE::String (L"Color"), NE::ValuePtr (new ColorValue (Color (0, 0, 0))), NE::OutputSlotConnectionMode::Single)));
-	RegisterUIOutputSlot (NUIE::UIOutputSlotPtr (new NUIE::UIOutputSlot (NE::SlotId ("circle"), NE::String (L"Circle"))));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("center"), NE::LocString (L"Center"), nullptr, NE::OutputSlotConnectionMode::Single)));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("radius"), NE::LocString (L"Radius"), NE::ValuePtr (new NE::DoubleValue (10.0)), NE::OutputSlotConnectionMode::Single)));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("color"), NE::LocString (L"Color"), NE::ValuePtr (new ColorValue (Color (0, 0, 0))), NE::OutputSlotConnectionMode::Single)));
+	RegisterUIOutputSlot (NUIE::UIOutputSlotPtr (new NUIE::UIOutputSlot (NE::SlotId ("circle"), NE::LocString (L"Circle"))));
 }
 
 NE::ValueConstPtr CircleNode::Calculate (NE::EvaluationEnv& env) const
@@ -421,7 +421,7 @@ void CircleNode::RegisterParameters (NUIE::NodeParameterList& parameterList) con
 	{
 	public:
 		RadiusParameter () :
-			SlotDefaultValueNodeParameter<CircleNode, NE::DoubleValue> (NE::SlotId ("radius"), NE::String (L"Radius"), NUIE::ParameterType::Double)
+			SlotDefaultValueNodeParameter<CircleNode, NE::DoubleValue> (NE::SlotId ("radius"), NE::LocString (L"Radius"), NUIE::ParameterType::Double)
 		{
 
 		}
@@ -451,12 +451,12 @@ NE::Stream::Status CircleNode::Write (NE::OutputStream& outputStream) const
 }
 
 OffsetNode::OffsetNode () :
-	OffsetNode (NE::String (), NUIE::Point ())
+	OffsetNode (NE::LocString (), NUIE::Point ())
 {
 
 }
 
-OffsetNode::OffsetNode (const NE::String& name, const NUIE::Point& position) :
+OffsetNode::OffsetNode (const NE::LocString& name, const NUIE::Point& position) :
 	DrawableNode (name, position)
 {
 
@@ -465,10 +465,10 @@ OffsetNode::OffsetNode (const NE::String& name, const NUIE::Point& position) :
 void OffsetNode::Initialize ()
 {
 	DrawableNode::Initialize ();
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("geometry"), NE::String (L"Geometry"), nullptr, NE::OutputSlotConnectionMode::Single)));
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("x"), NE::String (L"X"), NE::ValuePtr (new NE::DoubleValue (0.0)), NE::OutputSlotConnectionMode::Single)));
-	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("y"), NE::String (L"Y"), NE::ValuePtr (new NE::DoubleValue (0.0)), NE::OutputSlotConnectionMode::Single)));
-	RegisterUIOutputSlot (NUIE::UIOutputSlotPtr (new NUIE::UIOutputSlot (NE::SlotId ("geometry"), NE::String (L"Geometry"))));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("geometry"), NE::LocString (L"Geometry"), nullptr, NE::OutputSlotConnectionMode::Single)));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("x"), NE::LocString (L"X"), NE::ValuePtr (new NE::DoubleValue (0.0)), NE::OutputSlotConnectionMode::Single)));
+	RegisterUIInputSlot (NUIE::UIInputSlotPtr (new NUIE::UIInputSlot (NE::SlotId ("y"), NE::LocString (L"Y"), NE::ValuePtr (new NE::DoubleValue (0.0)), NE::OutputSlotConnectionMode::Single)));
+	RegisterUIOutputSlot (NUIE::UIOutputSlotPtr (new NUIE::UIOutputSlot (NE::SlotId ("geometry"), NE::LocString (L"Geometry"))));
 }
 
 NE::ValueConstPtr OffsetNode::Calculate (NE::EvaluationEnv& env) const
@@ -499,8 +499,8 @@ NE::ValueConstPtr OffsetNode::Calculate (NE::EvaluationEnv& env) const
 void OffsetNode::RegisterParameters (NUIE::NodeParameterList& parameterList) const
 {
 	BI::BasicUINode::RegisterParameters (parameterList);
-	NUIE::RegisterSlotDefaultValueNodeParameter<OffsetNode, NE::DoubleValue> (parameterList, NE::SlotId ("x"), NE::String (L"X"), NUIE::ParameterType::Double);
-	NUIE::RegisterSlotDefaultValueNodeParameter<OffsetNode, NE::DoubleValue> (parameterList, NE::SlotId ("y"), NE::String (L"Y"), NUIE::ParameterType::Double);
+	NUIE::RegisterSlotDefaultValueNodeParameter<OffsetNode, NE::DoubleValue> (parameterList, NE::SlotId ("x"), NE::LocString (L"X"), NUIE::ParameterType::Double);
+	NUIE::RegisterSlotDefaultValueNodeParameter<OffsetNode, NE::DoubleValue> (parameterList, NE::SlotId ("y"), NE::LocString (L"Y"), NUIE::ParameterType::Double);
 }
 
 NE::Stream::Status OffsetNode::Read (NE::InputStream& inputStream)
