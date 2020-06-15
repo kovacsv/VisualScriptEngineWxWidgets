@@ -184,6 +184,11 @@ NUIE::Size wxDrawingContext::MeasureText (const NUIE::Font& font, const std::wst
 	return NUIE::Size (size.x, size.y);
 }
 
+bool wxDrawingContext::CanDrawIcon ()
+{
+	return false;
+}
+
 void wxDrawingContext::DrawIcon (const NUIE::Rect&, const NUIE::IconId&)
 {
 	DBGBREAK ();
