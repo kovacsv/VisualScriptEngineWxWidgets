@@ -43,7 +43,7 @@ NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (const NUIE::Point& p
 	return SelectCommandFromContextMenu (control, position, commands);
 }
 
-void NodeEditorEventHandler::OnDoubleClick (const NUIE::Point&)
+void NodeEditorEventHandler::OnDoubleClick (NUIE::MouseButton, const NUIE::Point&)
 {
 
 }
