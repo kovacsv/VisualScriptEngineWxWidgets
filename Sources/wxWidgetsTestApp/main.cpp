@@ -2,7 +2,6 @@
 #include "NE_SingleValues.hpp"
 #include "NE_Debug.hpp"
 #include "BI_BuiltInNodes.hpp"
-#include "WXAS_wxFileIO.hpp"
 #include "WXAS_ParameterDialog.hpp"
 #include "WXAS_NodeEditorControl.hpp"
 
@@ -357,7 +356,6 @@ public:
 
 	void OnCommand (wxCommandEvent& evt)
 	{
-		WXAS::wxFileIO fileIO;
 		MenuBar::CommandId commandId = (MenuBar::CommandId) evt.GetId ();
 		switch (commandId) {
 			case MenuBar::CommandId::File_New:
@@ -372,7 +370,7 @@ public:
 						std::wstring fileName = fileDialog.GetPath ().ToStdWstring ();
 						drawingControl->ClearImage ();
 						// TODO: handle when open fails
-						if (nodeEditorControl->Open (fileName, &fileIO)) {
+						if (nodeEditorControl->Open (fileName)) {
 							applicationState.SetCurrentFileName (fileName);
 						} else {
 							Reset ();
@@ -384,10 +382,10 @@ public:
 				{
 					wxFileDialog fileDialog (this, L"Save", L"", L"", L"Node Engine Files (*.ne)|*.ne", wxFD_SAVE);
 					if (applicationState.HasCurrentFileName ()) {
-						nodeEditorControl->Save (applicationState.GetCurrentFileName (), &fileIO);
+						nodeEditorControl->Save (applicationState.GetCurrentFileName ());
 					} else if (fileDialog.ShowModal () == wxID_OK) {
 						std::wstring fileName = fileDialog.GetPath ().ToStdWstring ();
-						nodeEditorControl->Save (fileName, &fileIO);
+						nodeEditorControl->Save (fileName);
 						applicationState.SetCurrentFileName (fileName);
 					}
 				}
@@ -397,7 +395,7 @@ public:
 					wxFileDialog fileDialog (this, L"Save As", L"", L"", L"Node Engine Files (*.ne)|*.ne", wxFD_SAVE);
 					if (fileDialog.ShowModal () == wxID_OK) {
 						std::wstring fileName = fileDialog.GetPath ().ToStdWstring ();
-						nodeEditorControl->Save (fileName, &fileIO);
+						nodeEditorControl->Save (fileName);
 						applicationState.SetCurrentFileName (fileName);
 					}
 				}

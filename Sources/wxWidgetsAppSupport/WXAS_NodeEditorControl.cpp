@@ -334,9 +334,9 @@ void NodeEditorControl::New ()
 	nodeEditor->New ();
 }
  
-bool NodeEditorControl::Open (const std::wstring& fileName, const NUIE::ExternalFileIO* externalFileIO)
+bool NodeEditorControl::Open (const std::wstring& fileName)
 {
-	return nodeEditor->Open (fileName, externalFileIO);
+	return nodeEditor->Open (fileName);
 }
 
 bool NodeEditorControl::Open (NE::InputStream& inputStream)
@@ -344,9 +344,9 @@ bool NodeEditorControl::Open (NE::InputStream& inputStream)
 	return nodeEditor->Open (inputStream);
 }
  
-bool NodeEditorControl::Save (const std::wstring& fileName, const NUIE::ExternalFileIO* externalFileIO)
+bool NodeEditorControl::Save (const std::wstring& fileName)
 {
-	return nodeEditor->Save (fileName, externalFileIO);
+	return nodeEditor->Save (fileName);
 }
 
 bool NodeEditorControl::Save (NE::OutputStream& outputStream) const

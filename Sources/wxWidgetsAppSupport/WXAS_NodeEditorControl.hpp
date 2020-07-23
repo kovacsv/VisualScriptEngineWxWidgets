@@ -117,9 +117,9 @@ public:
 	void						SetSelectedNodes (const NE::NodeCollection& newSelectedNodes);
 
 	void						New ();
-	bool						Open (const std::wstring& fileName, const NUIE::ExternalFileIO* externalFileIO);
+	bool						Open (const std::wstring& fileName);
 	bool						Open (NE::InputStream& inputStream);
-	bool						Save (const std::wstring& fileName, const NUIE::ExternalFileIO* externalFileIO);
+	bool						Save (const std::wstring& fileName);
 	bool						Save (NE::OutputStream& outputStream) const;
 	bool						NeedToSave () const;
 	void						Undo ();
