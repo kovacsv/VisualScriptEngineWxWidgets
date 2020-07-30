@@ -62,12 +62,12 @@ void wxDrawingContext::Resize (int newWidth, int newHeight)
 	graphicsContext = wxGraphicsContext::Create (*memoryDC);
 }
 
-double wxDrawingContext::GetWidth () const
+int wxDrawingContext::GetWidth () const
 {
 	return width;
 }
 
-double wxDrawingContext::GetHeight () const
+int wxDrawingContext::GetHeight () const
 {
 	return height;
 }
