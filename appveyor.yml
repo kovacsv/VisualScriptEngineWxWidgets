@@ -12,6 +12,7 @@ cache:
 configuration:
   - Debug
   - Release
+  - RelWithDebInfo
 
 platform:
   - x64

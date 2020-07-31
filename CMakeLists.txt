@@ -17,7 +17,7 @@ endfunction ()
 set_property (GLOBAL PROPERTY USE_FOLDERS ON)
 
 set (CMAKE_SUPPRESS_REGENERATION 1)
-set (CMAKE_CONFIGURATION_TYPES Debug;Release)
+set (CMAKE_CONFIGURATION_TYPES Debug;Release;RelWithDebInfo)
 set (CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/DevKit CACHE PATH "Install prefix.")
 set (CMAKE_DEBUG_POSTFIX "Debug")
 set (VSE_DEVKIT_DIR $ENV{VSE_DEVKIT_DIR} CACHE PATH "VisualScriptEngine binary directory.")
