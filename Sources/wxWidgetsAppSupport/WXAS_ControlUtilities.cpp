@@ -70,18 +70,28 @@ NUIE::Key GetKeyFromEvent (wxKeyEvent& evt)
 	}
 	
 	NUIE::ModifierKeys modifierKeys = GetModiferKeysFromEvent (evt);
-	if (modifierKeys.Contains (NUIE::ModifierKeyCode::Control)) {
+	bool isControlPressed = modifierKeys.Contains (NUIE::ModifierKeyCode::Control);
+	bool isShiftPressed = modifierKeys.Contains (NUIE::ModifierKeyCode::Shift);
+	if (isControlPressed) {
 		switch (unicodeKey) {
 			case L'A':
 				return NUIE::Key (NUIE::KeyCode::SelectAll);
 			case L'C':
 				return NUIE::Key (NUIE::KeyCode::Copy);
+			case L'G':
+				if (isShiftPressed) {
+					return NUIE::Key (NUIE::KeyCode::Ungroup);
+				} else {
+					return NUIE::Key (NUIE::KeyCode::Group);
+				}
 			case L'V':
 				return NUIE::Key (NUIE::KeyCode::Paste);
 			case L'Z':
-				return NUIE::Key (NUIE::KeyCode::Undo);
-			case L'Y':
-				return NUIE::Key (NUIE::KeyCode::Redo);
+				if (isShiftPressed) {
+					return NUIE::Key (NUIE::KeyCode::Redo);
+				} else {
+					return NUIE::Key (NUIE::KeyCode::Undo);
+				}
 		}
 	}
 
