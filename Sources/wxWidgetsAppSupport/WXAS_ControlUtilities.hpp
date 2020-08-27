@@ -1,7 +1,7 @@
 #ifndef WXAS_CONTROLUTILITIES_HPP
 #define WXAS_CONTROLUTILITIES_HPP
 
-#include "NUIE_InputEventHandler.hpp"
+#include "NUIE_NodeEditor.hpp"
 #include "NUIE_MenuCommands.hpp"
 #include <wx/wx.h>
 
@@ -31,7 +31,7 @@ public:
 };
 
 NUIE::ModifierKeys		GetModiferKeysFromEvent (wxKeyboardState& evt);
-NUIE::Key				GetKeyFromEvent (wxKeyEvent& evt);
+NUIE::CommandCode		GetCommandFromEvent (wxKeyEvent& evt);
 
 void					SetTextControlValidator (wxTextCtrl* textCtrl, const std::wstring& validChars);
 NUIE::MenuCommandPtr	SelectCommandFromContextMenu (wxPanel* panel, const NUIE::Point& position, const NUIE::MenuCommandStructure& commands);

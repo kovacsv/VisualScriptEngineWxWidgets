@@ -264,11 +264,11 @@ void NodeEditorControl::OnMouseWheel (wxMouseEvent& evt)
 
 void NodeEditorControl::OnKeyDown (wxKeyEvent& evt)
 {
-	NUIE::Key key = GetKeyFromEvent (evt);
-	if (!key.IsValid ()) {
+	NUIE::CommandCode commandCode = GetCommandFromEvent (evt);
+	if (commandCode == NUIE::CommandCode::Undefined) {
 		return;
 	}
-	nodeEditor->OnKeyPress (key);
+	nodeEditor->ExecuteCommand (commandCode);
 }
 
 NodeEditorControl::UpdateMode NodeEditorControl::GetUpdateMode () const

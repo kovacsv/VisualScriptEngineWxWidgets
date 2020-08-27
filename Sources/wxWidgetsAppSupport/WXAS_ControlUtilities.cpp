@@ -56,16 +56,17 @@ NUIE::ModifierKeys GetModiferKeysFromEvent (wxKeyboardState& evt)
 	return NUIE::ModifierKeys (keys);
 }
 
-NUIE::Key GetKeyFromEvent (wxKeyEvent& evt)
+NUIE::CommandCode GetCommandFromEvent (wxKeyEvent& evt)
 {
 	wxChar unicodeKey = evt.GetUnicodeKey ();
 	if (unicodeKey <= WXK_ESCAPE || unicodeKey == WXK_SPACE || unicodeKey == WXK_DELETE || unicodeKey >= WXK_START) {
 		int key = evt.GetKeyCode ();
 		switch (key) {
 			case WXK_ESCAPE:
-				return NUIE::Key (NUIE::KeyCode::Escape);
+				return NUIE::CommandCode::Escape;
 			case WXK_DELETE:
-				return NUIE::Key (NUIE::KeyCode::Delete);
+			case WXK_BACK:
+				return NUIE::CommandCode::Delete;
 		}
 	}
 	
@@ -75,27 +76,27 @@ NUIE::Key GetKeyFromEvent (wxKeyEvent& evt)
 	if (isControlPressed) {
 		switch (unicodeKey) {
 			case L'A':
-				return NUIE::Key (NUIE::KeyCode::SelectAll);
+				return NUIE::CommandCode::SelectAll;
 			case L'C':
-				return NUIE::Key (NUIE::KeyCode::Copy);
+				return NUIE::CommandCode::Copy;
 			case L'G':
 				if (isShiftPressed) {
-					return NUIE::Key (NUIE::KeyCode::Ungroup);
+					return NUIE::CommandCode::Ungroup;
 				} else {
-					return NUIE::Key (NUIE::KeyCode::Group);
+					return NUIE::CommandCode::Group;
 				}
 			case L'V':
-				return NUIE::Key (NUIE::KeyCode::Paste);
+				return NUIE::CommandCode::Paste;
 			case L'Z':
 				if (isShiftPressed) {
-					return NUIE::Key (NUIE::KeyCode::Redo);
+					return NUIE::CommandCode::Redo;
 				} else {
-					return NUIE::Key (NUIE::KeyCode::Undo);
+					return NUIE::CommandCode::Undo;
 				}
 		}
 	}
 
-	return NUIE::InvalidKey;
+	return NUIE::CommandCode::Undefined;
 }
 
 void SetTextControlValidator (wxTextCtrl* textCtrl, const std::wstring& validChars)
