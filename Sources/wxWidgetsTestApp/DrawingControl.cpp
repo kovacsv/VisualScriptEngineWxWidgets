@@ -62,6 +62,12 @@ void DrawingControl::OnMouseWheel (wxMouseEvent& evt)
 	RedrawImage ();
 }
 
+void DrawingControl::ClearImage ()
+{
+	resultImage->Clear ();
+	RedrawImage ();
+}
+
 void DrawingControl::RedrawImage ()
 {
 	Refresh (false);

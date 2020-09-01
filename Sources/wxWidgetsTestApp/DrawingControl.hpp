@@ -23,6 +23,7 @@ public:
 	void	OnMouseMove (wxMouseEvent& evt);
 	void	OnMouseWheel (wxMouseEvent& evt);
 
+	void	ClearImage ();
 	void	RedrawImage ();
 
 private:

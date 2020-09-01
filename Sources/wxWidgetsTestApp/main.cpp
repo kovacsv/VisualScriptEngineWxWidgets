@@ -367,6 +367,7 @@ public:
 				{
 					wxFileDialog fileDialog (this, L"Open", L"", L"", L"Node Engine Files (*.ne)|*.ne", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
 					if (fileDialog.ShowModal () == wxID_OK) {
+						drawingControl->ClearImage ();
 						std::wstring fileName = fileDialog.GetPath ().ToStdWstring ();
 						// TODO: handle when open fails
 						if (nodeEditorControl->Open (fileName)) {
@@ -374,7 +375,6 @@ public:
 						} else {
 							Reset ();
 						}
-						drawingControl->RedrawImage ();
 					}
 				}
 				break;
@@ -463,7 +463,7 @@ private:
 	void Reset ()
 	{
 		nodeEditorControl->New ();
-		drawingControl->RedrawImage ();
+		drawingControl->ClearImage ();
 		applicationState.ClearCurrentFileName ();
 	}
 

@@ -74,8 +74,3 @@ void ResultImageEvaluationData::RemoveItem (const NUIE::DrawingItemConstPtr& ite
 {
 	resultImage->RemoveItem (item);
 }
-
-void ResultImageEvaluationData::Clear ()
-{
-	resultImage->Clear ();
-}

@@ -34,8 +34,6 @@ public:
 	void							AddItem (const NUIE::DrawingItemConstPtr& item);
 	void							RemoveItem (const NUIE::DrawingItemConstPtr& item);
 
-	virtual void					Clear () override;
-
 private:
 	std::shared_ptr<ResultImage>	resultImage;
 };
