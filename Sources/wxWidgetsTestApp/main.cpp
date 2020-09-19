@@ -79,7 +79,12 @@ public:
 
 	}
 
-	virtual void Do () override
+	virtual bool WillModify () const override
+	{
+		return true;
+	}
+
+	virtual void DoModification () override
 	{
 		nodeEditorControl->AddNode (CreateNode (nodeEditorControl->ViewToModel (position)));
 	}
