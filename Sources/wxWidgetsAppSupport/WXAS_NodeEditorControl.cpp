@@ -18,52 +18,23 @@ NodeEditorEventHandler::~NodeEditorEventHandler ()
 
 }
 
-NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (const NUIE::Point& position, const NUIE::MenuCommandStructure& commands)
+NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (NUIE::EventHandler::ContextMenuType, const NUIE::Point& position, const NUIE::MenuCommandStructure& commands)
 {
 	return SelectCommandFromContextMenu (control, position, commands);
 }
 
-NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (const NUIE::Point& position, const NUIE::UINodePtr&, const NUIE::MenuCommandStructure& commands)
+bool NodeEditorEventHandler::OnParameterSettings (NUIE::EventHandler::ParameterSettingsType, NUIE::ParameterInterfacePtr paramInterface)
 {
-	return SelectCommandFromContextMenu (control, position, commands);
-}
-
-NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (const NUIE::Point& position, const NUIE::UIOutputSlotConstPtr&, const NUIE::MenuCommandStructure& commands)
-{
-	return SelectCommandFromContextMenu (control, position, commands);
-}
-
-NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (const NUIE::Point& position, const NUIE::UIInputSlotConstPtr&, const NUIE::MenuCommandStructure& commands)
-{
-	return SelectCommandFromContextMenu (control, position, commands);
-}
-
-NUIE::MenuCommandPtr NodeEditorEventHandler::OnContextMenu (const NUIE::Point& position, const NUIE::UINodeGroupPtr&, const NUIE::MenuCommandStructure& commands)
-{
-	return SelectCommandFromContextMenu (control, position, commands);
+	ParameterDialog paramDialog (control, paramInterface);
+	if (paramDialog.ShowModal () == wxID_OK) {
+		return true;
+	}
+	return false;
 }
 
 void NodeEditorEventHandler::OnDoubleClick (const NUIE::Point&, NUIE::MouseButton)
 {
 
-}
-
-bool NodeEditorEventHandler::OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface, const NUIE::UINodePtr&)
-{
-	ParameterDialog paramDialog (control, paramInterface);
-	if (paramDialog.ShowModal () == wxID_OK) {
-		return true;
-	}
-	return false;
-}
-
-bool NodeEditorEventHandler::OnParameterSettings (NUIE::ParameterInterfacePtr paramInterface, const NUIE::UINodeGroupPtr&)
-{
-	ParameterDialog paramDialog (control, paramInterface);
-	if (paramDialog.ShowModal () == wxID_OK) {
-		return true;
-	}
-	return false;
 }
 
 NodeEditorUIEnvironment::NodeEditorUIEnvironment (	NodeEditorControl* nodeEditorControl,

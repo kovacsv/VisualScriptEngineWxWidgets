@@ -145,45 +145,49 @@ public:
 	
 	}
 
-	virtual NUIE::MenuCommandPtr OnContextMenu (const NUIE::Point& position, const NUIE::MenuCommandStructure& commands) override
+	virtual NUIE::MenuCommandPtr OnContextMenu (NUIE::EventHandler::ContextMenuType type, const NUIE::Point& position, const NUIE::MenuCommandStructure& commands) override
 	{
-		NUIE::MenuCommandStructure actualCommands = commands;
-		NUIE::MultiMenuCommandPtr createCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Add Node")));
+		if (type == NUIE::EventHandler::ContextMenuType::EmptyArea) {
+			NUIE::MenuCommandStructure actualCommands = commands;
+			NUIE::MultiMenuCommandPtr createCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Add Node")));
 
-		NUIE::MultiMenuCommandPtr inputCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Input Nodes")));
-		inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Boolean, NE::LocString (L"Boolean"), position)));
-		inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Integer, NE::LocString (L"Integer"), position)));
-		inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Number, NE::LocString (L"Number"), position)));
-		inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::IntegerIncrement, NE::LocString (L"Integer Increment"), position)));
-		inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::NumberIncrement, NE::LocString (L"Number Increment"), position)));
-		inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::NumberDistribution, NE::LocString (L"Number Distribution"), position)));
-		inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::ListBuilder, NE::LocString (L"List Builder"), position)));
-		createCommandGroup->AddChildCommand (inputCommandGroup);
+			NUIE::MultiMenuCommandPtr inputCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Input Nodes")));
+			inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Boolean, NE::LocString (L"Boolean"), position)));
+			inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Integer, NE::LocString (L"Integer"), position)));
+			inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Number, NE::LocString (L"Number"), position)));
+			inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::IntegerIncrement, NE::LocString (L"Integer Increment"), position)));
+			inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::NumberIncrement, NE::LocString (L"Number Increment"), position)));
+			inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::NumberDistribution, NE::LocString (L"Number Distribution"), position)));
+			inputCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::ListBuilder, NE::LocString (L"List Builder"), position)));
+			createCommandGroup->AddChildCommand (inputCommandGroup);
 
-		NUIE::MultiMenuCommandPtr arithmeticCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Arithmetic Nodes")));
-		arithmeticCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Addition, NE::LocString (L"Addition"), position)));
-		arithmeticCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Subtraction, NE::LocString (L"Subtraction"), position)));
-		arithmeticCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Multiplication, NE::LocString (L"Multiplication"), position)));
-		arithmeticCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Division, NE::LocString (L"Division"), position)));
-		createCommandGroup->AddChildCommand (arithmeticCommandGroup);
+			NUIE::MultiMenuCommandPtr arithmeticCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Arithmetic Nodes")));
+			arithmeticCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Addition, NE::LocString (L"Addition"), position)));
+			arithmeticCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Subtraction, NE::LocString (L"Subtraction"), position)));
+			arithmeticCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Multiplication, NE::LocString (L"Multiplication"), position)));
+			arithmeticCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Division, NE::LocString (L"Division"), position)));
+			createCommandGroup->AddChildCommand (arithmeticCommandGroup);
 
-		NUIE::MultiMenuCommandPtr drawingCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Drawing Nodes")));
-		drawingCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Color, NE::LocString (L"Color"), position)));
-		drawingCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Point, NE::LocString (L"Point"), position)));
-		drawingCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Line, NE::LocString (L"Line"), position)));
-		drawingCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Circle, NE::LocString (L"Circle"), position)));
-		createCommandGroup->AddChildCommand (drawingCommandGroup);
+			NUIE::MultiMenuCommandPtr drawingCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Drawing Nodes")));
+			drawingCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Color, NE::LocString (L"Color"), position)));
+			drawingCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Point, NE::LocString (L"Point"), position)));
+			drawingCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Line, NE::LocString (L"Line"), position)));
+			drawingCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Circle, NE::LocString (L"Circle"), position)));
+			createCommandGroup->AddChildCommand (drawingCommandGroup);
 
-		NUIE::MultiMenuCommandPtr transformationCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Transformation Nodes")));
-		transformationCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Offset, NE::LocString (L"Offset"), position)));
-		createCommandGroup->AddChildCommand (transformationCommandGroup);
+			NUIE::MultiMenuCommandPtr transformationCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Transformation Nodes")));
+			transformationCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Offset, NE::LocString (L"Offset"), position)));
+			createCommandGroup->AddChildCommand (transformationCommandGroup);
 
-		NUIE::MultiMenuCommandPtr otherCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Other Nodes")));
-		otherCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Viewer, NE::LocString (L"Viewer"), position)));
-		createCommandGroup->AddChildCommand (otherCommandGroup);
+			NUIE::MultiMenuCommandPtr otherCommandGroup (new NUIE::MultiMenuCommand (NE::LocString (L"Other Nodes")));
+			otherCommandGroup->AddChildCommand (NUIE::MenuCommandPtr (new MyCreateNodeCommand (control, MyCreateNodeCommand::NodeType::Viewer, NE::LocString (L"Viewer"), position)));
+			createCommandGroup->AddChildCommand (otherCommandGroup);
 
-		actualCommands.AddCommand (createCommandGroup);
-		return WXAS::SelectCommandFromContextMenu (control, position, actualCommands);
+			actualCommands.AddCommand (createCommandGroup);
+			return WXAS::SelectCommandFromContextMenu (control, position, actualCommands);
+		} else {
+			return WXAS::SelectCommandFromContextMenu (control, position, commands);
+		}
 	}
 };
 
