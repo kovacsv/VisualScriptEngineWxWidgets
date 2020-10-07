@@ -123,11 +123,6 @@ NUIE::ClipboardHandler& NodeEditorUIEnvironment::GetClipboardHandler ()
 	return *clipboardHandler;
 }
 
-double NodeEditorUIEnvironment::GetMouseMoveMinOffset ()
-{
-	return 2.0;
-}
-
 NodeEditorControl::NodeEditorControl (wxWindow *parent) :
 	wxPanel (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS),
 	captureHandler (this)
