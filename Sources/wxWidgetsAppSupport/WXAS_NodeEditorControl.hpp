@@ -50,6 +50,8 @@ public:
 	virtual void						OnRedrawRequested () override;
 	virtual NUIE::EventHandler&			GetEventHandler () override;
 	virtual NUIE::ClipboardHandler&		GetClipboardHandler () override;
+	virtual void						OnSelectionChanged (const NUIE::Selection& selection) override;
+	virtual void						OnUndoStateChanged (const NUIE::UndoState& undoState) override;
 
 private:
 	NodeEditorControl*								nodeEditorControl;
@@ -106,9 +108,6 @@ public:
 	NUIE::Point					ViewToModel (const NUIE::Point& viewPoint) const;
 	void						AlignToWindow ();
 	void						FitToWindow ();
-
-	const NE::NodeCollection&	GetSelectedNodes () const;
-	void						SetSelectedNodes (const NE::NodeCollection& newSelectedNodes);
 
 	void						New ();
 	bool						Open (const std::wstring& fileName);

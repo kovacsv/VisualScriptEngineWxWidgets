@@ -123,6 +123,16 @@ NUIE::ClipboardHandler& NodeEditorUIEnvironment::GetClipboardHandler ()
 	return *clipboardHandler;
 }
 
+void NodeEditorUIEnvironment::OnSelectionChanged (const NUIE::Selection&)
+{
+
+}
+
+void NodeEditorUIEnvironment::OnUndoStateChanged (const NUIE::UndoState&)
+{
+
+}
+
 NodeEditorControl::NodeEditorControl (wxWindow *parent) :
 	wxPanel (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS),
 	captureHandler (this)
@@ -283,16 +293,6 @@ void NodeEditorControl::AlignToWindow ()
 void NodeEditorControl::FitToWindow ()
 {
 	nodeEditor->FitToWindow ();
-}
-
-const NE::NodeCollection& NodeEditorControl::GetSelectedNodes () const
-{
-	return nodeEditor->GetSelectedNodes ();
-}
-
-void NodeEditorControl::SetSelectedNodes (const NE::NodeCollection& newSelectedNodes)
-{
-	nodeEditor->SetSelectedNodes (newSelectedNodes);
 }
 
 void NodeEditorControl::New ()
