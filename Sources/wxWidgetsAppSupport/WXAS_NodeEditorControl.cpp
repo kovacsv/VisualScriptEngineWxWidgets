@@ -133,6 +133,11 @@ void NodeEditorUIEnvironment::OnUndoStateChanged (const NUIE::UndoState&)
 
 }
 
+void NodeEditorUIEnvironment::OnClipboardStateChanged (const NUIE::ClipboardState&)
+{
+
+}
+
 NodeEditorControl::NodeEditorControl (wxWindow *parent) :
 	wxPanel (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS),
 	captureHandler (this)
