@@ -138,6 +138,11 @@ void NodeEditorUIEnvironment::OnClipboardStateChanged (const NUIE::ClipboardStat
 
 }
 
+void NodeEditorUIEnvironment::OnIncompatibleVersionPasted (const NUIE::Version&)
+{
+
+}
+
 NodeEditorControl::NodeEditorControl (wxWindow *parent) :
 	wxPanel (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS),
 	captureHandler (this)
