@@ -1,17 +1,13 @@
 import os
 import sys
 import re
-import urllib2
+import urllib.request
 import subprocess
 
-def DownloadFile (url, targetPath):
+def DownloadFile (url, path):
 	print ('Downloading ' + url)
-	response = urllib2.urlopen (url)
-	content = response.read ()
-	file = open (targetPath, 'wb')
-	file.write (content)
-	file.close ()
-	
+	urllib.request.urlretrieve (url, path)
+
 def UnzipFile (zipFile, targetFolder):
 	print ('Unzipping ' + zipFile)
 	subprocess.call (['7z', 'x', zipFile, '-o' + targetFolder])
@@ -58,7 +54,7 @@ def InstallVisualScriptEngine (targetFolder, msBuildPath, msBuildConfiguration):
 
 def Main (argv):
 	if len (argv) != 4:
-		print 'usage: installdepswin.py <targetFolder> <msBuildPath> <msBuildConfiguration>'
+		print ('usage: installdepswin.py <targetFolder> <msBuildPath> <msBuildConfiguration>')
 		return 1
 	
 	currentDir = os.path.dirname (os.path.abspath (__file__))

@@ -2,6 +2,9 @@ version: "{build}"
 
 clone_folder: c:\projects\VisualScriptEngineWxWidgets
 
+environment:
+  PYTHON: "C:\\Python38-x64"
+
 image:
   - Visual Studio 2017
 
@@ -15,6 +18,10 @@ configuration:
 
 platform:
   - x64
+
+init:
+  - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
+  - python -V
 
 before_build:
   - set VSE_DEVKIT_DIR=C:\Dependencies\VisualScriptEngine-master\Build\DevKit
