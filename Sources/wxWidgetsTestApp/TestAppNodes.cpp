@@ -197,6 +197,7 @@ NUIE::DrawingItemConstPtr DrawableNode::CreateDrawingItem (const NE::ValueConstP
 		if (DBGVERIFY (drawableValue != nullptr)) {
 			result->AddItem (drawableValue->CreateDrawingItem ());
 		}
+		return true;
 	});
 	return result;
 }
