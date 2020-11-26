@@ -48,7 +48,7 @@ NUIE::ModifierKeys GetModiferKeysFromEvent (wxKeyboardState& evt)
 {
 	std::unordered_set<NUIE::ModifierKeyCode> keys;
 	if (evt.ControlDown ()) {
-		keys.insert (NUIE::ModifierKeyCode::Control);
+		keys.insert (NUIE::ModifierKeyCode::Command);
 	}
 	if (evt.ShiftDown ()) {
 		keys.insert (NUIE::ModifierKeyCode::Shift);
@@ -71,7 +71,7 @@ NUIE::CommandCode GetCommandFromEvent (wxKeyEvent& evt)
 	}
 	
 	NUIE::ModifierKeys modifierKeys = GetModiferKeysFromEvent (evt);
-	bool isControlPressed = modifierKeys.Contains (NUIE::ModifierKeyCode::Control);
+	bool isControlPressed = modifierKeys.Contains (NUIE::ModifierKeyCode::Command);
 	bool isShiftPressed = modifierKeys.Contains (NUIE::ModifierKeyCode::Shift);
 	if (isControlPressed) {
 		switch (unicodeKey) {
