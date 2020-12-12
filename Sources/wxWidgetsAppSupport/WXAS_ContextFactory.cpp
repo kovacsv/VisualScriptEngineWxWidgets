@@ -2,7 +2,7 @@
 #include "WXAS_wxDrawingContext.hpp"
 
 #if defined(_WIN32)
-#include "WAS_BitmapContextGdi.hpp"
+#include "WAS_GdiOffscreenContext.hpp"
 #endif
 
 //#define FORCE_USE_WX_CONTEXT
@@ -28,7 +28,7 @@ std::unique_ptr<NUIE::NativeDrawingContext> CreateNativeDrawingContext ()
 #if defined(USE_WX_CONTEXT)
 	return std::unique_ptr<NUIE::NativeDrawingContext> (new wxDrawingContext ());
 #else
-	return std::unique_ptr<NUIE::NativeDrawingContext> (new WAS::BitmapContextGdi ());
+	return std::unique_ptr<NUIE::NativeDrawingContext> (new WAS::GdiOffscreenContext ());
 #endif
 }
 
