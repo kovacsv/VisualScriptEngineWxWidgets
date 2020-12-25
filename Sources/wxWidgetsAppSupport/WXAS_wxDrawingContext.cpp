@@ -202,7 +202,7 @@ wxPoint wxDrawingContext::GetPoint (const NUIE::Point& point)
 wxRect wxDrawingContext::GetRect (const NUIE::Rect& rect)
 {
 	NUIE::IntRect intRect (rect);
-	return wxRect (intRect.GetX (), intRect.GetY (), intRect.GetWidth (), intRect.GetHeight ());
+	return wxRect (intRect.GetLeft (), intRect.GetTop (), intRect.GetWidth (), intRect.GetHeight ());
 }
 
 wxColour wxDrawingContext::GetColor (const NUIE::Color& color)
