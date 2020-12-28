@@ -378,7 +378,6 @@ public:
 					if (fileDialog.ShowModal () == wxID_OK) {
 						drawingControl->ClearImage ();
 						std::wstring fileName = fileDialog.GetPath ().ToStdWstring ();
-						// TODO: handle when open fails
 						if (nodeEditorControl->Open (fileName)) {
 							applicationState.SetCurrentFileName (fileName);
 						} else {
