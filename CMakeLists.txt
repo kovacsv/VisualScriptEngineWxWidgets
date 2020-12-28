@@ -87,7 +87,6 @@ if (MSVC AND NOT ${WXWIDGETS_DIR} STREQUAL "")
 		${NodeUIEngineSourcesFolder}
 		${BuiltInNodesSourcesFolder}
 		${TestFrameworkSourcesFolder}
-		${WindowsAppSupportSourcesFolder}
 		${wxWidgetsAppSupportSourcesFolder}
 		${VSE_DEVKIT_DIR}/include
 		${WXWIDGETS_DIR}/include
@@ -97,7 +96,6 @@ if (MSVC AND NOT ${WXWIDGETS_DIR} STREQUAL "")
 		${VSE_DEVKIT_DIR}/lib/NodeEngine${VSE_LIB_POSTFIX}.lib
 		${VSE_DEVKIT_DIR}/lib/NodeUIEngine${VSE_LIB_POSTFIX}.lib
 		${VSE_DEVKIT_DIR}/lib/BuiltInNodes${VSE_LIB_POSTFIX}.lib	
-		${VSE_DEVKIT_DIR}/lib/WindowsAppSupport${VSE_LIB_POSTFIX}.lib	
 		wxWidgetsAppSupport
 	)
 	target_compile_definitions (wxWidgetsTestApp PUBLIC _CRT_SECURE_NO_WARNINGS)
