@@ -46,14 +46,14 @@ BusyCursorGuard::~BusyCursorGuard ()
 
 NUIE::ModifierKeys GetModiferKeysFromEvent (wxKeyboardState& evt)
 {
-	std::unordered_set<NUIE::ModifierKeyCode> keys;
+	NUIE::ModifierKeys keys;
 	if (evt.ControlDown ()) {
-		keys.insert (NUIE::ModifierKeyCode::Command);
+		keys.Insert (NUIE::ModifierKeyCode::Command);
 	}
 	if (evt.ShiftDown ()) {
-		keys.insert (NUIE::ModifierKeyCode::Shift);
+		keys.Insert (NUIE::ModifierKeyCode::Shift);
 	}
-	return NUIE::ModifierKeys (keys);
+	return keys;
 }
 
 NUIE::CommandCode GetCommandFromEvent (wxKeyEvent& evt)
